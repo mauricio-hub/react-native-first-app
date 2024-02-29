@@ -1,29 +1,27 @@
-import React, { useState } from 'react';
-import {Button, Platform, Pressable, StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import {PrymaryButton} from '../../components';
+import {Button} from 'react-native-paper';
 
 export const CounterScreen = () => {
-
-    const [counter, setCounter] = useState(0);
-
+  const [counter, setCounter] = useState(0);
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{counter}</Text>
 
-      <Pressable  onPress={() => {
-            setCounter(counter + 1);
-      }} 
-      onLongPress={() => {
-        setCounter(0);
+      {/*   <PrymaryButton
+        onPress={() => setCounter(counter + 1)}
+        onLongPress={() => setCounter(0)}
+        label="Incrementar"
+      /> */}
 
-      }}
-        style={({pressed}) => [
-            styles.button,
-            pressed && styles.buttonPressed,
-        ]}
-      >
-        <Text    style={{color: Platform.OS === 'android' ? 'white' : 'black'}}>Incremetar</Text>
-       </Pressable> 
+      <Button
+        mode="contained"
+        onPress={() => setCounter(counter + 1)}
+        onLongPress={() => setCounter(0)}>
+        Incrementar
+      </Button>
     </View>
   );
 };
@@ -39,14 +37,4 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: '300',
   },
-
-    button: {
-        backgroundColor: Platform.OS === "android" ? '#5856D6' : '#fff200',
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        borderRadius: 10,
-    },
-    buttonPressed: {
-        backgroundColor: Platform.OS === "android" ? '#6866b3' : '#d7d27b',
-    }
 });
